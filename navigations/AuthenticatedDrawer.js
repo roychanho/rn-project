@@ -53,49 +53,6 @@ export default function AuthenticatedDrawer() {
           ),
         }}
       />
-      {/* <Drawer.Screen
-        name="Logout"
-        component={Logout}
-        options={{
-          title: "Logout",
-          drawerIcon: ({ color}) => (
-            <IconButton
-              icon="exit"
-              color={color}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
-        }}
-      /> */}
     </Drawer.Navigator>
   );
 }
-
-// const AuthenticatedDrawer = () => {
-//   const authCtx = useContext(AuthContext);
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerStyle: { backgroundColor: Colors.primary500 },
-//         headerTintColor: "white",
-//         contentStyle: { backgroundColor: Colors.primary100 },
-//       }}
-//     >
-//       <Stack.Screen
-//         name="Home"
-//         component={Home}
-//         options={{
-//           headerRight: ({ tintColor }) => (
-//             <IconButton
-//               icon="exit"
-//               color={tintColor}
-//               size={24}
-//               onPress={authCtx.logout}
-//             />
-//           ),
-//         }}
-//       />
-//     </Stack.Navigator>
-//   );
-// };
