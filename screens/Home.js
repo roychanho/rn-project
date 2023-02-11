@@ -3,8 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../store/authContext";
 
-import RecentExpenses from "./expenses/RecentExpenses";
-
 const Home = () => {
   const [fetchedMessage, setFetchedMessage] = useState("");
   const authCtx = useContext(AuthContext);

@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 import Home from "../screens/Home";
-import Expenses from "../screens/expenses/Expenses";
 
 import IconButton from "../components/Ui/IconButton";
 
@@ -39,24 +38,6 @@ export default function BottomTapNavigator() {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Expenses"
-        component={Expenses}
-        options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name="calendar" size={size} color={color} />
-          ),
-        }}
-      /> */}
-      {/* <Tab.Screen
-        name="ManageExpense"
-        component={ManageExpense}
-        options={{
-          tabBarVisible: false,
-          tabBarButton: () => null,
-          presentation: "modal",
-        }}
-      /> */}
     </Tab.Navigator>
   );
 }

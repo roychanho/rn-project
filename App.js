@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useContext, useEffect, useState } from "react";
 import AuthContextProvider, { AuthContext } from "./store/authContext";
-import ExpensesContextProvider from "./store/expensesContext";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import AppLoading from "expo-app-loading";
@@ -49,9 +48,7 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <AuthContextProvider>
-        <ExpensesContextProvider>
-          <Root />
-        </ExpensesContextProvider>
+        <Root />
       </AuthContextProvider>
     </>
   );
