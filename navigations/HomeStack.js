@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTapNavigator from "./BottomTapNavigator";
-
+import PostDetail from "../components/PostPage/PostDetail";
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
@@ -10,6 +10,10 @@ const HomeStack = () => {
         name="BottomTapNavigator"
         component={BottomTapNavigator}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="PostDetail"
+        component={PostDetail}
       />
     </Stack.Navigator>
   );

@@ -1,29 +1,69 @@
 import axios from "axios";
-import { StyleSheet, Text, View } from "react-native";
+import ApiManager from "../util/ApiManager";
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../store/authContext";
+import PostList from "../components/PostPage/PostList";
+import { constants } from "buffer";
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const [fetchData, setFetchData] = useState([]);
   const [fetchedMessage, setFetchedMessage] = useState("");
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
 
   useEffect(() => {
-    axios
-      .get(
-        "https://react-http-1a1d5-default-rtdb.firebaseio.com/message.json?auth=" +
-          token
-      )
-      .then((response) => {
-        setFetchedMessage(response.data);
-      });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        setFetchData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       "https://react-http-1a1d5-default-rtdb.firebaseio.com/message.json?auth=" +
+  //         token
+  //     )
+  //     .then((response) => {
+  //       setFetchedMessage(response.data);
+  //     });
+  // }, []);
+
+  function renderPostItem(itemData) {
+    function pressHandler() {
+      navigation.navigate("PostDetail", {
+        postId: itemData.item.id,
+        title: itemData.item.title,
+        body: itemData.item.body,
+      });
+    }
+
+    return <PostList title={itemData.item.title} onPress={pressHandler} />;
+  }
+
   return (
-    <View style={styles.rootContainer}>
-      <Text style={styles.title}>Welcome!</Text>
-      <Text>{fetchedMessage}</Text>
-    </View>
+    <SafeAreaView className="flex-1">
+      <View style={styles.rootContainer}>
+        <Text style={styles.title}>Welcome!</Text>
+        <View className="grid grid-flow-row">
+          <FlatList
+            data={fetchData}
+            key={(item) => item.id}
+            keyExtractor={(item) => item.id}
+            renderItem={renderPostItem}
+            numColumns={2}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
